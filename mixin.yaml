@@ -1,0 +1,44 @@
+mixin: # object
+    rule-providers:
+        Direct: 
+            type: http
+            behavior: "classical"
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml"
+            path: profiles/Direct.yaml
+            interval: 86400
+        
+        ADs: 
+            type: http
+            behavior: "classical"
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml"
+            path: profiles/ADs.yaml
+            interval: 86400
+        
+        ADs_Domain: 
+            type: http
+            behavior: "classical"
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml"
+            path: profiles/ADs_Domain.yaml
+            interval: 86400
+        
+        Proxy:
+            type: http
+            behavior: "classical"
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy.yaml"
+            path: profiles/Proxy.yaml
+            interval: 86400
+        
+        Proxy_Domain:
+            type: http
+            behavior: "domain"
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Domain.yaml"
+            path: profiles/Proxy_Domain.yaml
+            interval: 86400
+        
+    rules:
+        - 'DOMAIN-SUFFIX,openai.com, 你的机场代理集名称' #chatgpt
+        - 'RULE-SET,Direct,DIRECT'
+        - 'RULE-SET,ADs,REJECT'
+        - 'RULE-SET,ADs_Domain,REJECT'
+        - 'RULE-SET,Proxy,你的机场代理集名称'
+        - 'RULE-SET,Proxy_Domain,你的机场代理集名称'
