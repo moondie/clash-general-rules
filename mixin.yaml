@@ -1,28 +1,38 @@
 mixin: # object
+    tun:
+        enable: true
+        stack: system # or system
+        dns-hijack:
+            - 198.18.0.2:53 # when `fake-ip-range` is 198.18.0.1/16, should hijack 198.18.0.2:53
+        auto-route: true # auto set global route for Windows
+        # It is recommended to use `interface-name`
+        auto-detect-interface: true # auto detect interface, conflict with `interface-name`
     dns:
         enable: true
         ipv6: true
         listen: 0.0.0.0:53
         default-nameserver:
-            - 119.29.29.29
+            - 114.114.114.114
             - 223.5.5.5
         enhanced-mode: fake-ip
         fake-ip-range: 198.18.0.1/16
         fake-ip-filter:
             - '*.lan'
+            - '*.local'
             - localhost.ptlogin2.qq.com
-            - '+.srv.nintendo.net'
-            - '+.stun.playstation.net'
-            - '+.msftconnecttest.com'
-            - '+.msftncsi.com'
-            - '+.xboxlive.com'
-            - 'msftconnecttest.com'
+            - '*.srv.nintendo.net'
+            - '*.stun.playstation.net'
+            - '*.msftconnecttest.com'
+            - '*.msftncsi.com'
+            - '*.xboxlive.com'
+            - '*.msftconnecttest.com'
             - 'xbox.*.microsoft.com'
             - '*.battlenet.com.cn'
             - '*.battlenet.com'
             - '*.blzstatic.cn'
             - '*.battle.net'
         nameserver:
+            - 114.114.114.114
             - https://doh.pub/dns-query
             - https://dns.alidns.com/dns-query
         fallback:
@@ -70,9 +80,11 @@ mixin: # object
             interval: 86400
         
     rules:
-        - 'DOMAIN-SUFFIX,openai.com, 你的机场代理集名称' #chatgpt
+        - 'DOMAIN-SUFFIX,huya.com,DIRECT'
+        - 'DOMAIN,events.gfe.nvidia.com,🐱 掌中世界'
+        - 'DOMAIN-SUFFIX,openai.com,🐱 掌中世界'
         - 'RULE-SET,Direct,DIRECT'
         - 'RULE-SET,ADs,REJECT'
         - 'RULE-SET,ADs_Domain,REJECT'
-        - 'RULE-SET,Proxy,你的机场代理集名称'
-        - 'RULE-SET,Proxy_Domain,你的机场代理集名称'
+        - 'RULE-SET,Proxy,🐱 掌中世界'
+        - 'RULE-SET,Proxy_Domain,🐱 掌中世界'
