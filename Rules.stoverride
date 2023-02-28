@@ -72,12 +72,4 @@ rule-providers:
         path: ./ruleset/Proxy_Domain.yaml
         interval: 86400
 
-rules:
-    - DOMAIN-SUFFIX,huya.com,DIRECT
-    - DOMAIN,events.gfe.nvidia.com,🐱 掌中世界
-    - DOMAIN-SUFFIX,openai.com,🐱 掌中世界
-    - RULE-SET,Direct,DIRECT
-    - RULE-SET,ADs,REJECT
-    - RULE-SET,ADs_Domain,REJECT
-    - RULE-SET,Proxy,🐱 掌中世界
-    - RULE-SET,Proxy_Domain,🐱 掌中世界
+
