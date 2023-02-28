@@ -1,7 +1,7 @@
 name: 去广告加分流规则
 desc: 自用的去广告加分流规则
 
-dns: #!replace
+dns:
     enable: true
     ipv6: true
     listen: 0.0.0.0:53
@@ -72,7 +72,7 @@ rule-providers:
         path: ./ruleset/Proxy_Domain.yaml
         interval: 86400
 
-rules: #!replace
+rules:
     - DOMAIN-SUFFIX,huya.com,DIRECT
     - DOMAIN,events.gfe.nvidia.com,🐱 掌中世界
     - DOMAIN-SUFFIX,openai.com,🐱 掌中世界
