@@ -17,6 +17,7 @@ mixin: # object
         enhanced-mode: fake-ip
         fake-ip-range: 198.18.0.1/16
         fake-ip-filter:
+            #- 'store.steampowered.com'
             - '*.lan'
             - '*.local'
             - localhost.ptlogin2.qq.com
@@ -27,21 +28,24 @@ mixin: # object
             - '+.xboxlive.com'
             - '+.msftconnecttest.com'
             - 'xbox.*.microsoft.com'
-            - '*.battlenet.com.cn'
-            - '*.battlenet.com'
-            - '*.blzstatic.cn'
-            - '*.battle.net'
+            - '+.battlenet.com.cn'
+            - '+.battlenet.com'
+            - '+.blzstatic.cn'
+            - '+.battle.net'
         nameserver:
+            - 114.114.114.114
             - https://doh.pub/dns-query
             - https://dns.alidns.com/dns-query
-        fallback:
-            - https://1.1.1.1/dns-query
-            - https://dns.google/dns-query
-        fallback-filter:
-            geoip: true
-            geoip-code: CN
-            ipcidr:
-                - 240.0.0.0/4
+      #  fallback:
+       #     - https://1.1.1.1/dns-query
+        #    - https://dns.google/dns-query
+       # fallback-filter:
+        #    geoip: false
+        #    geoip-code: CN
+         #   ipcidr:
+         #       - 240.0.0.0/4
+        nameserver-policy:
+            '+.steampowered.com': '114.114.114.114'
     rule-providers:
         Direct: 
             type: http
@@ -77,8 +81,17 @@ mixin: # object
             url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Domain.yaml"
             path: profiles/Proxy_Domain.yaml
             interval: 86400
+        LAN:
+            type: http
+            behavior: "classical"
+            url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml"
+            path: profiles/LAN.yaml
+            interval: 86400
         
     rules:
+        - 'RULE-SET,LAN,DIRECT'
+        - 'DOMAIN-SUFFIX,winnie.cloud,你的机场代理集名称'
+        - 'DOMAIN-KEYWORD,steamcommunity,你的机场代理集名称'
         - 'DOMAIN-SUFFIX,huya.com,DIRECT'
         - 'DOMAIN,events.gfe.nvidia.com,你的机场代理集名称'
         - 'DOMAIN-SUFFIX,openai.com,你的机场代理集名称'
@@ -87,3 +100,6 @@ mixin: # object
         - 'RULE-SET,ADs_Domain,REJECT'
         - 'RULE-SET,Proxy,你的机场代理集名称'
         - 'RULE-SET,Proxy_Domain,你的机场代理集名称'
+        - 'GEOIP,CN,DIRECT'
+        - 'MATCH,你的机场代理集名称'
+        #- 'MATCH,DIRECT'
